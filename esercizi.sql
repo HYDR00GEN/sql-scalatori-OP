@@ -58,12 +58,12 @@ dall’America,	e,	solo	se	egli	ha	effettuato	almeno	una	scalata,
 affiancare	queste	informazioni	alle	nazioni	in	cui	ha	effettuato	
 scalate **/
 
-select scalatore.cf, scalatore.nazionenascita, nazione.continente
+select scalatore.cf, scalatore.nazionenascita, nazione.continente , scalata.nazione as NazioneScalta
 from scalatore 
-    join scalata on scalata.scalatore = scalatore.cf
+    left join scalata on scalata.scalatore = scalatore.cf
     join nazione on scalatore.nazionenascita = nazione.nome
-where nazione.continente != 'America'
+where nazione.continente != 'America' and scalata.nazione is not null
+order  by scalatore.cf
 
-select *
-from    scalatore join scalata on scalatore.cf = scalata.scalatore
-        join nazione on scalatore.nazionenascita = nazione.nome
+/** 7 -  **/
+

@@ -42,3 +42,15 @@ from scalatore
     join nazione on scalata.nazione = nazione.nome
 where scalatore.nazionenascita = scalata.nazione
 group by scalata.nazione
+
+/** 5 -  Per	ogni	continente,	calcolare	il	numero	di	scalate	effettuate	
+da	scalatori	nati	in	una	nazione	di	quel	continente**/
+
+select nazione.continente, count( distinct scalatore.cf) as ScalatoriInStessoContinente
+from scalatore 
+    join nazione on scalatore.nazionenascita = nazione.nome
+    join scalata on scalata.scalatore = scalatore.cf
+    join nazione n2 on scalata.nazione = n2.nome
+where nazione.continente = n2.continente
+group by nazione.continente
+

@@ -26,14 +26,19 @@ continente)	nelle	quali	è	stata	effettuata	almeno	una	scalata
 da	uno	scalatore	minorenne **/
 
 
-select nazione.nome, nazione.continente
+select count(nazione.nome) as scalatoriMaggiorenni, nazione.continente
 from scalatore
     join scalata on scalata.scalatore = scalatore.cf
     join nazione on scalata.nazione = nazione.nome
 where (scalata.anno - scalatore.annonascita) >= 18
+group by nazione.nome
 
-select *
-from scalata join scalatore on scalata.scalatore = scalatore.cf
-    join nazione on nazione.nome = scalata.nazione
+/** 4 - Per	ogni	nazione,	calcolare	il	numero	di	scalate	effettuate	da	
+scalatori	nati	in	quella	nazione **/
 
-/** **/
+select scalata.nazione, count(scalata.scalatore) as ScalatoriNellaPropiaNazione
+from scalatore
+    join scalata on scalata.scalatore = scalatore.cf
+    join nazione on scalata.nazione = nazione.nome
+where scalatore.nazionenascita = scalata.nazione
+group by scalata.nazione

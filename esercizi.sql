@@ -26,6 +26,14 @@ continente)	nelle	quali	è	stata	effettuata	almeno	una	scalata
 da	uno	scalatore	minorenne **/
 
 
+select nazione.nome, nazione.continente
+from scalatore
+    join scalata on scalata.scalatore = scalatore.cf
+    join nazione on scalata.nazione = nazione.nome
+where (scalata.anno - scalatore.annonascita) >= 18
 
+select *
+from scalata join scalatore on scalata.scalatore = scalatore.cf
+    join nazione on nazione.nome = scalata.nazione
 
 /** **/

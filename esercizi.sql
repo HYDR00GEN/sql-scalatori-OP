@@ -13,13 +13,11 @@ tutti	i	continenti	in	cui	ha	effettuato	una	scalata,
 ordinando	il	risultato	per	codice	fiscale	e,	a	parità	di	
 codice	fiscale,	per	il	nome	del	continente  **/
 
-select scalata.scalatore, count(nazione.continente), scalatore.annonascita
-from scalata
+select scalatore.cf, count(distinct scalata.nazione)
+from scalatore join scalata on scalatore.cf = scalata.scalatore
     join nazione on scalata.nazione = nazione.nome
-    join scalatore on scalatore.cf = scalata.scalatore
 where scalatore.annonascita < 1980
-group by scalata.scalatore, scalatore.annonascita
-order by scalata.scalatore
+group by scalatore.cf, nazione.continente
 
 /**  3 - Calcolare	le	nazioni	(mostrando,	per	ciascuna,	anche	il	
 continente)	nelle	quali	è	stata	effettuata	almeno	una	scalata	
@@ -68,3 +66,4 @@ where nazione.continente != 'America'
 
 select *
 from    scalatore join scalata on scalatore.cf = scalata.scalatore
+        join nazione on scalatore.nazionenascita = nazione.nome

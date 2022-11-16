@@ -30,7 +30,7 @@ select count(nazione.nome) as scalatoriMaggiorenni, nazione.continente
 from scalatore
     join scalata on scalata.scalatore = scalatore.cf
     join nazione on scalata.nazione = nazione.nome
-where (scalata.anno - scalatore.annonascita) >= 18
+where (scalata.anno - scalatore.annonascita) <= 18
 group by nazione.nome
 
 /** 4 - Per	ogni	nazione,	calcolare	il	numero	di	scalate	effettuate	da	
@@ -54,3 +54,17 @@ from scalatore
 where nazione.continente = n2.continente
 group by nazione.continente
 
+/** 6 - Calcolare	codice	fiscale,	nazione	di	nascita,	continente	di	
+nascita	di	ogni	scalatore	nato	in	un	continente	diverso	
+dall’America,	e,	solo	se	egli	ha	effettuato	almeno	una	scalata,	
+affiancare	queste	informazioni	alle	nazioni	in	cui	ha	effettuato	
+scalate **/
+
+select scalatore.cf, scalatore.nazionenascita, nazione.continente
+from scalatore 
+    join scalata on scalata.scalatore = scalatore.cf
+    join nazione on scalatore.nazionenascita = nazione.nome
+where nazione.continente != 'America'
+
+select *
+from    scalatore join scalata on scalatore.cf = scalata.scalatore

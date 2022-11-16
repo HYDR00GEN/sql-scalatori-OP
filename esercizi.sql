@@ -60,9 +60,9 @@ scalate **/
 
 select scalatore.cf, scalatore.nazionenascita, nazione.continente , scalata.nazione as NazioneScalta
 from scalatore 
-    left join scalata on scalata.scalatore = scalatore.cf
     join nazione on scalatore.nazionenascita = nazione.nome
-where nazione.continente != 'America' and scalata.nazione is not null
+    left join scalata on scalata.scalatore = scalatore.cf
+where nazione.continente != 'America'
 order  by scalatore.cf
 
 /** 7 - Per	ogni	nazione	e	per	ogni	anno,	calcolare	il	numero	di		
@@ -72,9 +72,11 @@ stesso	continente	devono	essere	mostrati	in	tuple contigue,	e
 le	tuple relative	allo	stesso	continente	devono	essere	ordinate	
 per	anno. **/
 
-select scalata.nazione, scalata
-from
-where
+select continente, nazione, anno, count(*) as scalate
+from scalata join nazione on scalata.nazione = nazione.nome
+group by continente, nazione, anno
+having count(*) > 1
+order by continente, anno
 
 /** 8 - Per	ogni	nazione	N,	calcolare	il	numero	medio	di	
 scalate	effettuate	all’anno	in	N da	scalatori	nati	in	

@@ -65,5 +65,22 @@ from scalatore
 where nazione.continente != 'America' and scalata.nazione is not null
 order  by scalatore.cf
 
-/** 7 -  **/
+/** 7 - Per	ogni	nazione	e	per	ogni	anno,	calcolare	il	numero	di		
+scalate	effettuate	in	quella	nazione	e	in	quell’anno,	ma	solo	se	
+tale	numero	è	maggiore	di	1.	Nel	risultato	le	nazioni	dello	
+stesso	continente	devono	essere	mostrati	in	tuple contigue,	e	
+le	tuple relative	allo	stesso	continente	devono	essere	ordinate	
+per	anno. **/
+
+select scalata.nazione, scalata
+from
+where
+
+/** 8 - Per	ogni	nazione	N,	calcolare	il	numero	medio	di	
+scalate	effettuate	all’anno	in	N da	scalatori	nati	in	
+nazioni	diverse	da	N **/
+
+/** 9 - Calcolare	gli	scalatori	tali	che	tutte	le	scalate	che	
+hanno	effettuato	nella	nazione	di	nascita	le	hanno	
+effettuate	quando	erano	minorenni. **/
 

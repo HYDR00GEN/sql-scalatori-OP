@@ -82,6 +82,8 @@ order by continente, anno
 scalate	effettuate	all’anno	in	N da	scalatori	nati	in	
 nazioni	diverse	da	N **/
 
+
+
 /** 9 - Calcolare	gli	scalatori	tali	che	tutte	le	scalate	che	
 hanno	effettuato	nella	nazione	di	nascita	le	hanno	
 effettuate	quando	erano	minorenni. **/
